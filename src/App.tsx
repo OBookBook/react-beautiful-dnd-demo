@@ -1,11 +1,18 @@
+import { useState } from "react";
 import "./App.css";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 function App() {
+  const [items] = useState(["item0", "item1", "item2"]);
+
+  const onDragEnd = (result) => {
+    const remove = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, remove[0]);
+  };
   return (
     <>
       <div className="dragDropArea">
-        <DragDropContext>
+        <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="draggable">
             {(provided) => (
               <div {...provided.droppableProps} ref={provided.innerRef}>
@@ -17,7 +24,7 @@ function App() {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      item0
+                      {items[0]}
                     </div>
                   )}
                 </Draggable>
@@ -29,7 +36,7 @@ function App() {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      item1
+                      {items[1]}
                     </div>
                   )}
                 </Draggable>
@@ -41,10 +48,11 @@ function App() {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      item2
+                      {items[2]}
                     </div>
                   )}
                 </Draggable>
+                {provided.placeholder}
               </div>
             )}
           </Droppable>
