@@ -7,6 +7,14 @@ function App() {
     { id: 0, text: "item0" },
     { id: 1, text: "item1" },
     { id: 2, text: "item2" },
+    { id: 3, text: "item3" },
+    { id: 4, text: "item4" },
+    { id: 5, text: "item5" },
+    { id: 6, text: "item6" },
+    { id: 7, text: "item7" },
+    { id: 8, text: "item8" },
+    { id: 9, text: "item9" },
+    { id: 10, text: "item10" },
   ]);
 
   const onDragEnd = (result) => {
